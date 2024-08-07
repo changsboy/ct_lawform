@@ -1,7 +1,7 @@
 name: Deploy to EC2
 
 on:
-  push:
+  pull_request:
     branches:
       - master
 
@@ -20,8 +20,8 @@ jobs:
 
     - name: Deploy to EC2
       run: |
-        ssh -o StrictHostKeyChecking=no ec2-user@${{ secrets.EC2_HOST }} << 'EOF'
-          cd /path/to/your/project || exit
+        ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
+          cd /home/ubuntu/ct_lawform || exit
           git pull origin master  
           npm install
           npm run build
