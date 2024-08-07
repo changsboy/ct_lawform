@@ -12,15 +12,16 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppController = void 0;
+exports.Q1Controller = exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
+const path_1 = require("path");
 let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
     }
-    getIndex(res) {
-        res.sendFile('index.html', { root: 'dist' });
+    getHome(res) {
+        res.sendFile((0, path_1.join)(__dirname, '..', 'public', 'index.html'));
     }
     getHello() {
         return this.appService.getHello();
@@ -28,12 +29,12 @@ let AppController = class AppController {
 };
 exports.AppController = AppController;
 __decorate([
-    (0, common_1.Get)('*'),
+    (0, common_1.Get)(),
     __param(0, (0, common_1.Res)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
-], AppController.prototype, "getIndex", null);
+], AppController.prototype, "getHome", null);
 __decorate([
     (0, common_1.Get)('/hello'),
     __metadata("design:type", Function),
@@ -44,4 +45,21 @@ exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])
 ], AppController);
+let Q1Controller = class Q1Controller {
+    getQ1(res) {
+        const filePath = (0, path_1.join)(__dirname, '..', 'public', 'q1.html');
+        return res.sendFile(filePath);
+    }
+};
+exports.Q1Controller = Q1Controller;
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], Q1Controller.prototype, "getQ1", null);
+exports.Q1Controller = Q1Controller = __decorate([
+    (0, common_1.Controller)('q1')
+], Q1Controller);
 //# sourceMappingURL=app.controller.js.map
