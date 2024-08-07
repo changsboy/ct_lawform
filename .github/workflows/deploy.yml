@@ -22,13 +22,9 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
           cd /home/ubuntu/ct_lawform || exit
-          
           pm2 stop my-app || true
-
-          git pull origin master  
-
+          git pull origin master
           npm install
           npm run build
-          
           pm2 start dist/main.js --name my-app
         EOF
