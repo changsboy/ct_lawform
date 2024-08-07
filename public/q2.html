@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문제 #2</title>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <h1>문제 #2</h1>
+    <p>숫자 N을 입력받아서넓이와 높이가N인 정사각형 형태의 그림을 그리면 됩니다. 
+       문자'X'를이용하여 정사각형의 틀과 틀 안에 X자 그림을 그리고, 그 외 공간은 문자 'O'로 채우면 됩니다.
+        
+    <h1></h1>
+    <input type="number" id="sizeInput" placeholder="정사각형 크기 입력" />
+    <button id="drawButton">그리기</button>
+    <div id="result"></div>
+
+    <script>
+        function drawSquare(N) {
+            let result = '';
+            for (let i = 0; i < N; i++) {
+                let line = '';
+                for (let j = 0; j < N; j++) {
+                    if (i === 0 || i === N - 1 || j === 0 || j === N - 1) {
+                        line += 'X';
+                    } else {
+                        if (i === j) {
+                            line += 'X';
+                        } else if ( i + j === N -1) {
+                            line += 'X'
+                        } else {
+                            line += 'O';
+                        }
+                    }
+                }
+                result += line + '\n';
+            }
+            document.getElementById('result').innerText = result;
+        }
+
+        document.getElementById('drawButton').addEventListener('click', function() {
+            const size = parseInt(document.getElementById('sizeInput').value);
+            if (!isNaN(size) && size > 0) {
+                drawSquare(size);
+            } else {
+                alert('유효한 숫자를 입력하세요.');
+            }
+        });
+    </script>
+    <h2>소스코드</h2>
+    <p></p>
+    <pre><code class="language-javascript">
+let result = '';
+for (let i = 0; i < N; i++) {
+    let line = '';
+    for (let j = 0; j < N; j++) {
+        if (i === 0 || i === N - 1 || j === 0 || j === N - 1) {
+            line += 'X';
+        } else {
+            if (i === j) {
+                line += 'X';
+            } else if ( i + j === N -1) {
+                line += 'X'
+            } else {
+                line += 'O';
+            }
+        }
+    }
+    result += line + '\n';
+}
+</code></pre>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+</body>
+</html>
