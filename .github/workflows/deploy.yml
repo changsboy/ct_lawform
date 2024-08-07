@@ -22,6 +22,8 @@ jobs:
       run: |
         ssh -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
           cd /home/ubuntu/ct_lawform || exit
+          git remote -v
+          git status
           git pull origin master  
           npm install
           npm run build
