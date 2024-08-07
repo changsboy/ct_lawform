@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>문항 선택</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        .question {
+            margin: 20px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .question:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>문항 선택</h1>
+    <div class="question" onclick="navigateTo('/route1')">문항 1</div>
+    <div class="question" onclick="navigateTo('/route2')">문항 2</div>
+    <div class="question" onclick="navigateTo('/route3')">문항 3</div>
+
+    <script>
+        function navigateTo(route) {
+            window.location.href = route; // 특정 라우트로 이동
+        }
+    </script>
+
+</body>
+</html>
