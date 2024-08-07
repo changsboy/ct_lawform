@@ -12,7 +12,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Q1Controller = exports.AppController = void 0;
+exports.Q2Controller = exports.Q1Controller = exports.AppController = void 0;
 const common_1 = require("@nestjs/common");
 const app_service_1 = require("./app.service");
 const path_1 = require("path");
@@ -23,9 +23,6 @@ let AppController = class AppController {
     getHome(res) {
         res.sendFile((0, path_1.join)(__dirname, '..', 'public', 'index.html'));
     }
-    getHello() {
-        return this.appService.getHello();
-    }
 };
 exports.AppController = AppController;
 __decorate([
@@ -35,12 +32,6 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "getHome", null);
-__decorate([
-    (0, common_1.Get)('/hello'),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", String)
-], AppController.prototype, "getHello", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])
@@ -62,4 +53,21 @@ __decorate([
 exports.Q1Controller = Q1Controller = __decorate([
     (0, common_1.Controller)('q1')
 ], Q1Controller);
+let Q2Controller = class Q2Controller {
+    getQ1(res) {
+        const filePath = (0, path_1.join)(__dirname, '..', 'public', 'q2.html');
+        return res.sendFile(filePath);
+    }
+};
+exports.Q2Controller = Q2Controller;
+__decorate([
+    (0, common_1.Get)(),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], Q2Controller.prototype, "getQ1", null);
+exports.Q2Controller = Q2Controller = __decorate([
+    (0, common_1.Controller)('q2')
+], Q2Controller);
 //# sourceMappingURL=app.controller.js.map

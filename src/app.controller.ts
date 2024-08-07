@@ -11,18 +11,21 @@ export class AppController {
     res.sendFile(join(__dirname, '..', 'public', 'index.html'));
   }
 
-  @Get('/hello')
-  getHello(): string {
-    return this.appService.getHello();
-  }
 }
 
 @Controller('q1')
 export class Q1Controller {
     @Get()
     getQ1(@Res() res: Response) {
-        // q1.html 파일의 경로를 설정합니다.
         const filePath = join(__dirname, '..', 'public', 'q1.html');
+        return res.sendFile(filePath);
+    }
+}
+@Controller('q2')
+export class Q2Controller {
+    @Get()
+    getQ1(@Res() res: Response) {
+        const filePath = join(__dirname, '..', 'public', 'q2.html');
         return res.sendFile(filePath);
     }
 }

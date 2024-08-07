@@ -4,8 +4,10 @@ export declare class AppController {
     private readonly appService;
     constructor(appService: AppService);
     getHome(res: Response): void;
-    getHello(): string;
 }
 export declare class Q1Controller {
+    getQ1(res: Response): void;
+}
+export declare class Q2Controller {
     getQ1(res: Response): void;
 }
