@@ -24,6 +24,7 @@
         .question:hover {
             background-color: #f0f0f0;
         }
+        
     </style>
 </head>
 <body>
@@ -32,7 +33,11 @@
     <div class="question" onclick="navigateTo('/q1')">문항 1</div>
     <div class="question" onclick="navigateTo('/q2')">문항 2</div>
     <div class="question" onclick="navigateTo('/q3')">문항 3</div>
-
+    <div class="githublink">
+        <a href="https://github.com/changsboy/ct_lawform" target="_blank" rel="noopener noreferrer">
+            GitHub Repository
+        </a>
+    </div>
     <script>
         function navigateTo(route) {
             window.location.href = route;

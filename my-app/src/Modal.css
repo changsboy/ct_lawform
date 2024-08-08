@@ -35,3 +35,11 @@
     max-height: 400px; 
     overflow-y: auto;
 }
+
+code {
+    display: block;
+    font-family: monospace;
+    background-color: #f5f5f5;
+    color: #333;
+    padding: 20px; 
+}

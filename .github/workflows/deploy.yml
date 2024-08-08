@@ -31,5 +31,6 @@ jobs:
           npm install
           npm run build
           
+          cd /home/ubuntu/ct_lawform || exit
           pm2 start dist/main.js --name my-app
         EOF
