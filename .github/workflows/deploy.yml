@@ -26,5 +26,9 @@ jobs:
           git pull origin master
           npm install
           npm run build
+          cd my-app || exit
+          npm install
+          npm run build
+          
           pm2 start dist/main.js --name my-app
         EOF

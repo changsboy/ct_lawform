@@ -23,6 +23,9 @@ let AppController = class AppController {
     getHome(res) {
         res.sendFile((0, path_1.join)(__dirname, '..', 'public', 'index.html'));
     }
+    getQ3Page(res) {
+        res.sendFile((0, path_1.join)(__dirname, '..', 'my-app/build', 'index.html'));
+    }
 };
 exports.AppController = AppController;
 __decorate([
@@ -32,6 +35,13 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], AppController.prototype, "getHome", null);
+__decorate([
+    (0, common_1.Get)('/q3'),
+    __param(0, (0, common_1.Res)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], AppController.prototype, "getQ3Page", null);
 exports.AppController = AppController = __decorate([
     (0, common_1.Controller)(),
     __metadata("design:paramtypes", [app_service_1.AppService])

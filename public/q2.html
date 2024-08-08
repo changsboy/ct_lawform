@@ -3,75 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/themes/prism.css" rel="stylesheet" />
     <title>문제 #2</title>
-    <style>
-        
-    </style>
 </head>
 <body>
     <h1>문제 #2</h1>
-    <p>숫자 N을 입력받아서넓이와 높이가N인 정사각형 형태의 그림을 그리면 됩니다. 
-       문자'X'를이용하여 정사각형의 틀과 틀 안에 X자 그림을 그리고, 그 외 공간은 문자 'O'로 채우면 됩니다.
-        
-    <h1></h1>
-    <input type="number" id="sizeInput" placeholder="정사각형 크기 입력" />
-    <button id="drawButton">그리기</button>
-    <div id="result"></div>
+    <p>구글시트에 입력된 데이터 바탕으로 데이터베이스 설계하기 </p> 
 
-    <script>
-        function drawSquare(N) {
-            let result = '';
-            for (let i = 0; i < N; i++) {
-                let line = '';
-                for (let j = 0; j < N; j++) {
-                    if (i === 0 || i === N - 1 || j === 0 || j === N - 1) {
-                        line += 'X';
-                    } else {
-                        if (i === j) {
-                            line += 'X';
-                        } else if ( i + j === N -1) {
-                            line += 'X'
-                        } else {
-                            line += 'O';
-                        }
-                    }
-                }
-                result += line + '\n';
-            }
-            document.getElementById('result').innerText = result;
-        }
+    <h2>스키마</h2>
+    <p>정규화에 맞게 테이블을 나누어서 설계하였습니다. 
+        이렇게 설계할 경우 write시 한테이블에 몰리는 현상을 줄이는 강점이 있습니다만, 
+        read가 많은 서비스일 경우 일부러 student에 다 합치는것이 더 효율이 좋습니다.
+    </p>
+    <pre><code class="language-sql">
+CREATE TABLE school (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
 
-        document.getElementById('drawButton').addEventListener('click', function() {
-            const size = parseInt(document.getElementById('sizeInput').value);
-            if (!isNaN(size) && size > 0) {
-                drawSquare(size);
-            } else {
-                alert('유효한 숫자를 입력하세요.');
-            }
-        });
-    </script>
-    <h2>소스코드</h2>
-    <p></p>
-    <pre><code class="language-javascript">
-let result = '';
-for (let i = 0; i < N; i++) {
-    let line = '';
-    for (let j = 0; j < N; j++) {
-        if (i === 0 || i === N - 1 || j === 0 || j === N - 1) {
-            line += 'X';
-        } else {
-            if (i === j) {
-                line += 'X';
-            } else if ( i + j === N -1) {
-                line += 'X'
-            } else {
-                line += 'O';
-            }
-        }
-    }
-    result += line + '\n';
-}
+CREATE TABLE student (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    phone_number VARCHAR(15),
+    email VARCHAR(100),
+    date_of_birth DATE,
+    parent_name VARCHAR(100),
+    parent_phone_number VARCHAR(15),
+    school_id INT,
+    FOREIGN KEY (school_id) REFERENCES school(id)
+);
+
+CREATE TABLE teacher (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    subject VARCHAR(100)
+);
+
+CREATE TABLE student_teacher (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
+    teacher_id INT,
+    FOREIGN KEY (student_id) REFERENCES student(id),
+    FOREIGN KEY (teacher_id) REFERENCES teacher(id)
+);
+
+CREATE TABLE hobby (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    hobby_name VARCHAR(100)
+);
+
+CREATE TABLE student_hobby (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT,
+    hobby_id INT,
+    FOREIGN KEY (student_id) REFERENCES student(id),
+    FOREIGN KEY (hobby_id) REFERENCES hobby(id)
+);
 </code></pre>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.24.1/prism.js"></script>
 </body>
 </html>

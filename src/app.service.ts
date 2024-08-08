@@ -6,3 +6,10 @@ export class AppService {
     return 'Hello World!';
   }
 }
+
+@Injectable()
+export class CalculateService {
+  getHello(): string {
+    return 'Hello World!';
+  }
+}

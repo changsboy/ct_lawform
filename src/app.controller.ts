@@ -11,6 +11,11 @@ export class AppController {
     res.sendFile(join(__dirname, '..', 'public', 'index.html'));
   }
 
+  @Get('/q3')
+    getQ3Page(@Res() res: Response) {
+        res.sendFile(join(__dirname, '..', 'my-app/build', 'index.html'));
+    }
+
 }
 
 @Controller('q1')
